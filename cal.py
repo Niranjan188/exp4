@@ -22,3 +22,27 @@ while True:
         print(f"Result: {result}\n")
     except ValueError:
         print("Invalid input! Please enter numbers correctly.")
+def add(a, b): return a + b
+def sub(a, b): return a - b
+def mul(a, b): return a * b
+def div(a, b): return a / b if b != 0 else "Error: Div by 0"
+
+operations = {"+": add, "-": sub, "*": mul, "/": div}
+
+def run_calculator():
+    print("Functions-based Calc (Type 'q' to quit)")
+    while True:
+        op_choice = input("Select (+, -, *, /): ")
+        if op_choice.lower() == 'q': break
+        if op_choice not in operations:
+            print("Invalid choice!")
+            continue
+        try:
+            v1 = float(input("First number: "))
+            v2 = float(input("Second number: "))
+            calc_func = operations[op_choice]
+            print(f"Output: {calc_func(v1, v2)}\n")
+        except ValueError:
+            print("Numeric input required.")
+
+run_calculator()
