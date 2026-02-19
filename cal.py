@@ -46,3 +46,28 @@ def run_calculator():
             print("Numeric input required.")
 
 run_calculator()
+class PowerCalc:
+    def __init__(self):
+        self.current = 0.0
+
+    def process(self, op, val):
+        try:
+            if op == '+': self.current += val
+            elif op == '-': self.current -= val
+            elif op == '*': self.current *= val
+            elif op == '/': self.current /= val
+            elif op == 'c': self.current = 0.0
+            return self.current
+        except ZeroDivisionError:
+            return "Error: Cannot divide by zero"
+
+calc = PowerCalc()
+print("OOP Calculator: Commands: +, -, *, /, c (clear), s (stop)")
+while True:
+    cmd = input(f"({calc.current}) Operation & Value: ").split()
+    if cmd[0] == 's': break
+    if len(cmd) < 2 and cmd[0] != 'c': continue
+    
+    op = cmd[0]
+    val = float(cmd[1]) if len(cmd) > 1 else 0
+    print(f"Total: {calc.process(op, val)}")
